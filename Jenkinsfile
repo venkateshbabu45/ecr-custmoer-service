@@ -20,14 +20,13 @@ pipeline {
     }
     stage('Docker Build') {
       steps {
-        sh '/usr/bin/docker build -t address-service:latest .'
+        sh '/usr/bin/docker build -t satheeshch/address-service:latest .'
       }
     }
-   
-    stage('Push ECRImage') {
+    stage('Push image') {
       steps {
-        withDockerRegistry([credentialsId: 'aws-credentials-satheesh', url: "https://990456062402.dkr.ecr.us-east-1.amazonaws.com"]) {
-          sh '/usr/bin/docker push address-service:latest'
+        withDockerRegistry([credentialsId: 'docker-hub', url: "https://index.docker.io/v1/"]) {
+          sh '/usr/bin/docker push satheeshch/address-service:latest'
         }
       }
     }
