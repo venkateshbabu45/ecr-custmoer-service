@@ -26,8 +26,8 @@ pipeline {
    
     stage('Push ECRImage') {
       steps {
-        withDockerRegistry('https://990456062402.dkr.ecr.us-east-1.amazonaws.com', 'ecr:us-east-1:AKIAJ2TAT4FMKSHX3BTA') {
-          sh '/usr/bin/docker push address-service:latest'
+        withDockerRegistry([credentialsId: 'AKIAJ2TAT4FMKSHX3BTA', url: "https://990456062402.dkr.ecr.us-east-1.amazonaws.com"]) {
+          sh '/usr/bin/docker push satheeshch/employee-service:latest'
         }
       }
     }
