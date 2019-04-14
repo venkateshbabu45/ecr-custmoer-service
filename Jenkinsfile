@@ -33,6 +33,7 @@ pipeline {
   stage('deploy to ECR') {
       steps {
         node('EKS-master'){
+          checkout scm
          sh 'kubectl apply -f deployment.yaml' 
          sh 'kubectl apply -f service.yaml' 
         }
