@@ -2,7 +2,7 @@ pipeline {
   agent any
   tools { 
         maven 'Maven'
-        jdk 'JAVA_HOME'
+        jdk 'Java'
   }
   stages {
     stage('Clone repository') {
@@ -30,6 +30,14 @@ pipeline {
         }
       }
     }
+    stage('push image to ECR'){
+      steps {
+        withDockerRegistry(credentialsId: 'ecr:us-east-1:aws-credentials', url: 'http://990456062402.dkr.ecr.us-east-1.amazonaws.com/address-service') {
+          sh 'docker tag satheeshch/address-service:latest 990456062402.dkr.ecr.us-east-1.amazonaws.com/address-service:latest'
+          sh 'docker push 990456062402.dkr.ecr.us-east-1.amazonaws.com/address-service:latest'
+        } 
+      }
+    }
   stage('deploy to ECR') {
       steps {
         node('EKS-master'){
@@ -38,8 +46,6 @@ pipeline {
          sh 'kubectl apply -f service.yaml' 
         }
       }
-    }
-  
-  
+    } 
   }
 }
