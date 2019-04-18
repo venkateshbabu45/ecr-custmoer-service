@@ -20,16 +20,10 @@ pipeline {
     }
     stage('Docker Build') {
       steps {
-        sh '/usr/bin/docker build -t satheeshch/address-service:latest .'
+        sh '/usr/bin/docker docker build -t address-service .'
       }
     }
-    stage('Push image') {
-      steps {
-        withDockerRegistry([credentialsId: 'docker-hub', url: "https://index.docker.io/v1/"]) {
-          sh '/usr/bin/docker push satheeshch/address-service:latest'
-        }
-      }
-    }
+   
     stage('push image to ECR'){
       steps {
        withDockerRegistry(credentialsId: 'ecr:us-east-1:aws-credentials-satheesh', url: 'http://990456062402.dkr.ecr.us-east-1.amazonaws.com/address-service') {
