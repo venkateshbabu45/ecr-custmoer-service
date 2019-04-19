@@ -1,8 +1,7 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: address-service
-  namespace: "sat-organization"
+  name: address-service 
 spec:
   replicas: 1
   template:
