@@ -30,7 +30,7 @@ pipeline {
           sh 'docker push 508607970941.dkr.ecr.us-east-1.amazonaws.com/address-service:latest'
         } 
       }
-    }
+    
    
   }
 }
