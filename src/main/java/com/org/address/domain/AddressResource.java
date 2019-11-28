@@ -25,6 +25,7 @@ public class AddressResource {
 		}
 		return addressReturn;
 	}
+//Added by Satheesh Chepuri
 
 	public List<Address> getAllAddresses() {
 		List<Address> addressList = new ArrayList<Address>();
