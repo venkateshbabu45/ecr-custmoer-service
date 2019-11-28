@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/address")
 public class AddressResource {
 	
-
+//Comment Added by Satheesh Chepuri
 	@GetMapping(value = "/{empId}")
 	public Address getEmployeeDetails(@PathVariable int empId) {
 
